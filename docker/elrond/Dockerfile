@@ -26,4 +26,5 @@ COPY --from=builder /go/elrond-go/cmd/node /go/elrond-go/cmd/node/
 COPY --from=builder /go/pkg/mod/github.com/\!elrond\!network/arwen-wasm-vm\@v0.3.10/wasmer/libwasmer_linux_amd64.so /go/pkg/mod/github.com/\!elrond\!network/arwen-wasm-vm\@v0.3.10/wasmer/libwasmer_linux_amd64.so
 WORKDIR /go/elrond-go/cmd/node/
 EXPOSE 8080
-CMD ["sh", "-c", "./node -sk-index 0 -use-log-view -log-level *:DEBUG -rest-api-interface :8080"]
+ENTRYPOINT ["/go/elrond-go/cmd/node/node"]
+#CMD ["sh", "-c", "./node -sk-index 0 -use-log-view -log-level *:DEBUG -rest-api-interface :8080"]
