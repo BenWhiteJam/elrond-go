@@ -1,8 +1,7 @@
 FROM golang:1.13.6 as builder
 
-RUN git clone https://github.com/ElrondNetwork/elrond-go.git
 WORKDIR /go/elrond-go
-RUN git checkout tags/v1.0.99
+COPY . .
 RUN GO111MODULE=on go mod vendor
 WORKDIR /go/elrond-go/cmd/node
 RUN go build -i -v -ldflags="-X main.appVersion=$(git describe --tags --long --dirty)"
