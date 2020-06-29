@@ -2,6 +2,7 @@ FROM golang:1.13.6 as builder
 
 WORKDIR /go/elrond-go
 COPY . .
+RUN ls -lh
 RUN GO111MODULE=on go mod vendor
 WORKDIR /go/elrond-go/cmd/node
 RUN go build -i -v -ldflags="-X main.appVersion=$(git describe --tags --long --dirty)"
