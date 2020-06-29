@@ -6,7 +6,6 @@ RUN GO111MODULE=on go mod vendor
 #Elrond node
 WORKDIR /go/elrond-go/cmd/node
 RUN go build -i -v -ldflags="-X main.appVersion=$(git describe --tags --long --dirty)"
-
 # ===== SECOND STAGE ======
 FROM ubuntu
 COPY --from=builder "/go/elrond-go/cmd/node" "/go/elrond-go/cmd/node/"
